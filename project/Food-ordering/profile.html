@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🍔 Foodie</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="restaurants.html">Restaurants</a>
+      <a href="orders.html">Orders</a>
+      <a href="cart.html">Cart 🛒</a>
+    </nav>
+  </header>
+
+  <!-- Profile Section -->
+  <section class="profile">
+    <div class="profile-box">
+
+      <h2>My Profile 👤</h2>
+      <p class="subtitle">Manage your account details</p>
+
+      <!-- User Info -->
+      <div class="profile-info">
+        <p><strong>Name:</strong> <span id="userName">-</span></p>
+        <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+      </div>
+
+      <!-- Address -->
+      <div class="address-section">
+        <h3>Delivery Address</h3>
+        <textarea id="address" placeholder="Enter your address"></textarea>
+        <button onclick="saveAddress()">Save Address</button>
+      </div>
+
+      <!-- Logout -->
+      <button class="logout-btn" onclick="logout()">Logout</button>
+
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="js/profile.js"></script>
+
+</body>
+</html>

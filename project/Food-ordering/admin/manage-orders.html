@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Orders - Foodie Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie Admin</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Users</a>
+    <a href="manage-orders.html">Orders</a>
+    <a href="manage-food.html">Food Items</a>
+    <a href="manage-restaurants.html">Restaurants</a>
+  </nav>
+</header>
+
+<section class="admin-panel">
+  <h2>Manage Orders 📦</h2>
+
+  <div id="ordersContainer"></div>
+</section>
+
+<script>
+  function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const container = document.getElementById('ordersContainer');
+
+    if (orders.length === 0) {
+      container.innerHTML = '<p>No orders yet</p>';
+      return;
+    }
+
+    container.innerHTML = orders.map((order, i) => {
+      let total = 0;
+      const items = order.map(item => {
+        total += item.price;
+        return `<p>- ${item.name}: ₹${item.price}</p>`;
+      }).join('');
+
+      return `
+        <div class="admin-card" style="margin-bottom: 15px; padding: 20px;">
+          <h3>Order #${i + 1}</h3>
+          ${items}
+          <p><strong>Total: ₹${total}</strong></p>
+          <button onclick="deleteOrder(${i})" style="background: red; color: white; padding: 8px 12px; cursor: pointer; border: none; border-radius: 5px;">Delete</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function deleteOrder(index) {
+    if (confirm('Delete this order?')) {
+      let orders = JSON.parse(localStorage.getItem('orders')) || [];
+      orders.splice(index, 1);
+      localStorage.setItem('orders', JSON.stringify(orders));
+      loadOrders();
+    }
+  }
+
+  loadOrders();
+</script>
+</body>
+</html>

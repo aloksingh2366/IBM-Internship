@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Food - Foodie Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie Admin</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Users</a>
+    <a href="manage-orders.html">Orders</a>
+    <a href="manage-food.html">Food Items</a>
+    <a href="manage-restaurants.html">Restaurants</a>
+  </nav>
+</header>
+
+<section class="admin-panel">
+  <h2>Manage Food Items 🍕</h2>
+
+  <div style="margin-bottom: 20px;">
+    <h3>Add New Food Item</h3>
+    <input type="text" id="foodName" placeholder="Food Name" style="padding: 8px; margin: 5px;">
+    <input type="number" id="foodPrice" placeholder="Price" style="padding: 8px; margin: 5px;">
+    <button onclick="addFood()" style="padding: 8px 15px; background: #ff4d4d; color: white; border: none; cursor: pointer; border-radius: 5px;">Add Food</button>
+  </div>
+
+  <div id="foodContainer"></div>
+</section>
+
+<script>
+  function loadFoods() {
+    const foods = JSON.parse(localStorage.getItem('foods')) || [
+      {name: 'Pizza', price: 199},
+      {name: 'Burger', price: 99},
+      {name: 'Noodles', price: 149},
+      {name: 'Biryani', price: 249}
+    ];
+
+    const container = document.getElementById('foodContainer');
+
+    container.innerHTML = foods.map((food, i) => `
+      <div class="admin-card" style="margin-bottom: 15px;">
+        <h4>${food.name}</h4>
+        <p>Price: ₹${food.price}</p>
+        <button onclick="deleteFood(${i})" style="background: red; color: white; padding: 5px 10px; cursor: pointer; border: none; border-radius: 5px;">Delete</button>
+      </div>
+    `).join('');
+  }
+
+  function addFood() {
+    const name = document.getElementById('foodName').value.trim();
+    const price = parseInt(document.getElementById('foodPrice').value);
+
+    if (!name || !price) {
+      alert('Please enter food name and price');
+      return;
+    }
+
+    let foods = JSON.parse(localStorage.getItem('foods')) || [];
+    foods.push({name, price});
+    localStorage.setItem('foods', JSON.stringify(foods));
+
+    document.getElementById('foodName').value = '';
+    document.getElementById('foodPrice').value = '';
+
+    loadFoods();
+  }
+
+  function deleteFood(index) {
+    if (confirm('Delete this food item?')) {
+      let foods = JSON.parse(localStorage.getItem('foods')) || [];
+      foods.splice(index, 1);
+      localStorage.setItem('foods', JSON.stringify(foods));
+      loadFoods();
+    }
+  }
+
+  loadFoods();
+</script>
+</body>
+</html>

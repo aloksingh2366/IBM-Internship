@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie Admin</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Users</a>
+    <a href="manage-orders.html">Orders</a>
+    <a href="manage-food.html">Food Items</a>
+    <a href="manage-restaurants.html">Restaurants</a>
+    <a href="../index.html">Back</a>
+  </nav>
+</header>
+
+<section class="admin-panel">
+  <h2>Admin Dashboard 📊</h2>
+  <p>Welcome to the Foodie Admin Panel. Manage your restaurant, users, and orders from here.</p>
+
+  <div class="admin-grid">
+    <div class="admin-card">
+      <h3>Total Users</h3>
+      <p style="font-size: 28px; color: #ff4d4d;" id="totalUsers">0</p>
+      <button onclick="goToAdminPage('manage-users')">Manage Users</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Total Orders</h3>
+      <p style="font-size: 28px; color: #ff4d4d;" id="totalOrders">0</p>
+      <button onclick="goToAdminPage('manage-orders')">View Orders</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Food Items</h3>
+      <p style="font-size: 28px; color: #ff4d4d;" id="totalFoods">0</p>
+      <button onclick="goToAdminPage('manage-food')">Manage Food</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Restaurants</h3>
+      <p style="font-size: 28px; color: #ff4d4d;" id="totalRestaurants">2</p>
+      <button onclick="goToAdminPage('manage-restaurants')">Manage Restaurants</button>
+    </div>
+  </div>
+</section>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>

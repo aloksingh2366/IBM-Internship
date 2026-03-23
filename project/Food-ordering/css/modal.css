@@ -1,0 +1,59 @@
+/* Modal Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+  
+  .modal-body {
+    flex-direction: column;
+  }
+  
+  .modal-dish-image {
+    max-width: 100%;
+  }
+  
+  .modal-actions button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .search-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .search-box button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    margin: 20% auto 10%;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+  }
+  
+  .modal-header h2 {
+    font-size: 18px;
+  }
+  
+  .wishlist-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .wishlist-btn .heart-icon {
+    font-size: 20px;
+  }
+}

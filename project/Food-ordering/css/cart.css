@@ -1,0 +1,43 @@
+.cart {
+  padding: 40px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.cart-item h4 {
+  margin-bottom: 5px;
+}
+
+.cart-controls button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: black;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.cart-summary button {
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foodie - Order Food Online</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🍔 Foodie</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="restaurants.html">Restaurants</a>
+      <a href="search.html">Search 🔍</a>
+      <a href="cart.html">Cart 🛒</a>
+      <a href="profile.html">Profile 👤</a>
+      <a href="login.html">Login</a>
+      <a href="admin/dashboard.html">Admin</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Delicious Food Delivered To You</h1>
+    <p>Order from your favorite restaurants</p>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search food or restaurant..." id="searchInput" autocomplete="off">
+      <button onclick="searchFood()">Search 🔍</button>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories-section">
+    <h2>Categories</h2>
+
+    <div class="category-filters" id="categoryFilters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="veg">Veg</button>
+      <button class="filter-btn" data-filter="nonveg">Non-Veg</button>
+      <button class="filter-btn" data-filter="bestseller">Best Seller</button>
+    </div>
+
+    <div class="category-cards" id="categoryCards"></div>
+  </section>
+
+  <!-- Food Items -->
+  <section class="foods">
+    <h2>Popular Dishes</h2>
+    <div class="food-container" id="foodContainer">
+      <!-- JS will insert food cards -->
+    </div>
+  </section>
+
+  <!-- Dish Detail Modal -->
+  <div id="dishModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeDishModal()">&times;</span>
+      <div class="modal-body">
+        <img id="modalDishImage" src="" alt="Dish" class="modal-dish-image">
+        <div class="modal-info">
+          <div class="modal-header">
+            <h2 id="modalDishName"></h2>
+            <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist(event)">
+              <span class="heart-icon">♡</span>
+            </button>
+          </div>
+          <div class="modal-details">
+            <p class="dish-category" id="modalDishCategory"></p>
+            <p class="dish-price" id="modalDishPrice"></p>
+            <p class="dish-description" id="modalDishDescription"></p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-add-to-cart" onclick="addToCartFromModal()">Add to Cart</button>
+            <button class="btn-continue" onclick="closeDishModal()">Continue Shopping</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Foodie. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

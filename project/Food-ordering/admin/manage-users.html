@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Users - Foodie Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie Admin</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Users</a>
+    <a href="manage-orders.html">Orders</a>
+    <a href="manage-food.html">Food Items</a>
+    <a href="manage-restaurants.html">Restaurants</a>
+  </nav>
+</header>
+
+<section class="admin-panel">
+  <h2>Manage Users 👥</h2>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="usersTable">
+      <tr>
+        <td colspan="3">No users yet</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+  function loadUsers() {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const tbody = document.getElementById('usersTable');
+
+    if (users.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3">No users yet</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = users.map((user, i) => `
+      <tr>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>
+          <button onclick="deleteUser(${i})" style="background: red; color: white; padding: 5px 10px; cursor: pointer; border: none;">Delete</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function deleteUser(index) {
+    if (confirm('Are you sure?')) {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      users.splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(users));
+      loadUsers();
+    }
+  }
+
+  loadUsers();
+</script>
+</body>
+</html>

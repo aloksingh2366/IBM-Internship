@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="restaurants.html">Restaurants</a>
+    <a href="cart.html">Cart 🛒</a>
+    <a href="search.html">Search 🔍</a>
+    <a href="profile.html">Profile 👤</a>
+  </nav>
+</header>
+
+<section class="cart">
+  <h2>Your Wishlist ❤️</h2>
+  <div id="wishlistContainer"></div>
+</section>
+
+<script src="js/search.js"></script>
+
+<script>
+  const container = document.getElementById("wishlistContainer");
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  if (wishlist.length === 0) {
+    container.innerHTML = "<p>No items in wishlist</p>";
+  } else {
+    container.innerHTML = wishlist.map((item, index) => `
+      <div class="cart-item">
+        <h4>${item.name}</h4>
+        <p>₹${item.price}</p>
+        <button onclick="addToCart('${item.name}', ${item.price})">
+          Move to Cart
+        </button>
+      </div>
+    `).join("");
+  }
+</script>
+
+</body>
+</html>

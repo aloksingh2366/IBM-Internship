@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="restaurants.html">Restaurants</a>
+    <a href="cart.html">Cart 🛒</a>
+    <a href="wishlist.html">Wishlist ❤️</a>
+    <a href="profile.html">Profile 👤</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Search Food 🔍</h2>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search food...">
+    <button onclick="searchFood()">Search</button>
+  </div>
+</section>
+
+<section class="foods">
+  <div class="food-container" id="searchResults"></div>
+</section>
+
+<script src="js/search.js"></script>
+</body>
+</html>

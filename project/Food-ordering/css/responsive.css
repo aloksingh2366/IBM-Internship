@@ -1,0 +1,156 @@
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 12px 30px;
+  }
+
+  .navbar nav a {
+    margin-left: 15px;
+  }
+
+  .food-container,
+  .restaurant-container,
+  .menu-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar nav {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar nav a {
+    margin-right: 12px;
+    margin-left: 0;
+  }
+
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .search-box input {
+    width: 200px;
+  }
+
+  .categories,
+  .foods,
+  .cart,
+  .profile,
+  .admin-panel {
+    padding: 20px 15px;
+  }
+
+  .category-container {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .category-card {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .food-container,
+  .restaurant-container,
+  .menu-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auth-box {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar .logo {
+    font-size: 18px;
+  }
+
+  .navbar nav a {
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 30px 10px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .search-box input {
+    width: 150px;
+    font-size: 12px;
+  }
+
+  .search-box button {
+    font-size: 12px;
+  }
+
+  .categories,
+  .foods,
+  .cart,
+  .profile,
+  .admin-panel,
+  .restaurants {
+    padding: 15px 10px;
+  }
+
+  .category-container {
+    gap: 5px;
+  }
+
+  .category-card {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .food-container,
+  .restaurant-container,
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .food-card,
+  .restaurant-card,
+  .menu-card,
+  .cart-item {
+    padding: 10px;
+  }
+
+  .auth-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}

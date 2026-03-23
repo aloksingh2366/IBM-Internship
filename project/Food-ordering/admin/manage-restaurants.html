@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Restaurants - Foodie Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie Admin</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="manage-users.html">Users</a>
+    <a href="manage-orders.html">Orders</a>
+    <a href="manage-food.html">Food Items</a>
+    <a href="manage-restaurants.html">Restaurants</a>
+  </nav>
+</header>
+
+<section class="admin-panel">
+  <h2>Manage Restaurants 🏪</h2>
+
+  <div style="margin-bottom: 20px;">
+    <h3>Add New Restaurant</h3>
+    <input type="text" id="restName" placeholder="Restaurant Name" style="padding: 8px; margin: 5px;">
+    <button onclick="addRestaurant()" style="padding: 8px 15px; background: #ff4d4d; color: white; border: none; cursor: pointer; border-radius: 5px;">Add Restaurant</button>
+  </div>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="restaurantsTable">
+      <tr>
+        <td colspan="3">Loading...</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+  function loadRestaurants() {
+    const restaurants = JSON.parse(localStorage.getItem('restaurants')) || [
+      {id: 1, name: 'Pizza Palace'},
+      {id: 2, name: 'Burger Hub'}
+    ];
+
+    const tbody = document.getElementById('restaurantsTable');
+
+    tbody.innerHTML = restaurants.map((rest, i) => `
+      <tr>
+        <td>${rest.id}</td>
+        <td>${rest.name}</td>
+        <td>
+          <button onclick="deleteRestaurant(${i})" style="background: red; color: white; padding: 5px 10px; cursor: pointer; border: none; border-radius: 5px;">Delete</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function addRestaurant() {
+    const name = document.getElementById('restName').value.trim();
+
+    if (!name) {
+      alert('Please enter restaurant name');
+      return;
+    }
+
+    let restaurants = JSON.parse(localStorage.getItem('restaurants')) || [
+      {id: 1, name: 'Pizza Palace'},
+      {id: 2, name: 'Burger Hub'}
+    ];
+
+    const newId = Math.max(...restaurants.map(r => r.id)) + 1;
+    restaurants.push({id: newId, name});
+    localStorage.setItem('restaurants', JSON.stringify(restaurants));
+
+    document.getElementById('restName').value = '';
+    loadRestaurants();
+  }
+
+  function deleteRestaurant(index) {
+    if (confirm('Delete this restaurant?')) {
+      let restaurants = JSON.parse(localStorage.getItem('restaurants')) || [];
+      restaurants.splice(index, 1);
+      localStorage.setItem('restaurants', JSON.stringify(restaurants));
+      loadRestaurants();
+    }
+  }
+
+  loadRestaurants();
+</script>
+</body>
+</html>

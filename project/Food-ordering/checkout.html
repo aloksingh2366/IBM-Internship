@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🍔 Foodie</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Back to Cart</a>
+  </nav>
+</header>
+
+<section class="checkout">
+  <h2>Checkout 💳</h2>
+
+  <!-- Address -->
+  <div class="checkout-box">
+    <h3>Delivery Address</h3>
+    <textarea id="address" placeholder="Enter your address"></textarea>
+  </div>
+
+  <!-- Payment -->
+  <div class="checkout-box">
+    <h3>Payment Method</h3>
+    <select id="payment">
+      <option value="cod">Cash on Delivery</option>
+      <option value="upi">UPI</option>
+      <option value="card">Card</option>
+    </select>
+  </div>
+
+
+  <!-- Summary -->
+  <div class="checkout-box">
+    <h3>Total: ₹<span id="finalTotal">0</span></h3>
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+
+</section>
+
+<script src="js/cart.js"></script>
+<script>
+  // Show total on checkout
+  const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+  let total = cartData.reduce((sum, item) => sum + item.price, 0);
+  document.getElementById("finalTotal").innerText = total;
+
+  function placeOrder() {
+    const address = document.getElementById("address").value;
+
+    if (!address) {
+      alert("Please enter address!");
+      return;
+    }
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(cartData);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert("Order placed successfully! 🎉");
+
+    localStorage.removeItem("cart");
+
+    window.location.href = "order-success.html";
+  }
+</script>
+</body>
+</html>

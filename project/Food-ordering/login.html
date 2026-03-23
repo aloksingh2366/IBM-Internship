@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Foodie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🍔 Foodie</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="signup.html">Signup</a>
+    </nav>
+  </header>
+
+  <!-- Login Container -->
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>Welcome Back 👋</h2>
+      <p>Login to continue ordering</p>
+
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Enter Email" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p class="auth-link">
+        Don't have an account? <a href="signup.html">Signup</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
