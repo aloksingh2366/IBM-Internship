@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Foodie - Order Food Online</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="home-page">
 
   <!-- Navbar -->
   <header class="navbar">
@@ -21,9 +22,9 @@
     <nav>
       <a href="#">Home</a>
       <a href="restaurants.html">Restaurants</a>
-      <a href="search.html">Search 🔍</a>
-      <a href="cart.html">Cart 🛒</a>
-      <a href="profile.html">Profile 👤</a>
+      <a href="search.html">Search</a>
+      <a href="cart.html">Cart</a>
+      <a href="profile.html">Profile</a>
       <a href="login.html">Login</a>
       <a href="admin/dashboard.html">Admin</a>
     </nav>
@@ -31,18 +32,45 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Delicious Food Delivered To You</h1>
-    <p>Order from your favorite restaurants</p>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fresh meals. Faster delivery.</p>
+      <h1>Delicious Food Delivered To Your Doorstep</h1>
+      <p class="hero-subtext">Discover local favorites, bestselling dishes, and chef-crafted meals in minutes.</p>
+
+      <div class="hero-highlights">
+        <span>30-Min Avg Delivery</span>
+        <span>500+ Dishes</span>
+        <span>Live Order Tracking</span>
+      </div>
+    </div>
 
     <div class="search-box">
       <input type="text" placeholder="Search food or restaurant..." id="searchInput" autocomplete="off">
-      <button onclick="searchFood()">Search 🔍</button>
+      <button onclick="searchFood()">Search</button>
+    </div>
+  </section>
+
+  <section class="value-strip">
+    <div class="value-item">
+      <h3>Top Rated Restaurants</h3>
+      <p>Order from trusted kitchens with consistent quality and quick prep.</p>
+    </div>
+    <div class="value-item">
+      <h3>Exclusive Daily Offers</h3>
+      <p>Unlock combo discounts and seasonal deals curated for your cravings.</p>
+    </div>
+    <div class="value-item">
+      <h3>Safe & Easy Checkout</h3>
+      <p>Use streamlined checkout flow with secure payments and instant confirmation.</p>
     </div>
   </section>
 
   <!-- Categories -->
   <section class="categories-section">
-    <h2>Categories</h2>
+    <div class="section-head">
+      <h2>Explore Categories</h2>
+      <p>Browse by cuisine type and quickly jump to what you love.</p>
+    </div>
 
     <div class="category-filters" id="categoryFilters">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -56,7 +84,10 @@
 
   <!-- Food Items -->
   <section class="foods">
-    <h2>Popular Dishes</h2>
+    <div class="section-head">
+      <h2>Popular Dishes</h2>
+      <p>Handpicked crowd favorites from our most ordered menu items.</p>
+    </div>
     <div class="food-container" id="foodContainer">
       <!-- JS will insert food cards -->
     </div>

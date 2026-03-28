@@ -5,12 +5,16 @@
   <title>Profile - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="profile-page">
 
   <!-- Navbar -->
   <header class="navbar">
@@ -19,32 +23,61 @@
       <a href="index.html">Home</a>
       <a href="restaurants.html">Restaurants</a>
       <a href="orders.html">Orders</a>
-      <a href="cart.html">Cart 🛒</a>
+      <a href="cart.html">Cart</a>
     </nav>
   </header>
 
   <!-- Profile Section -->
   <section class="profile">
-    <div class="profile-box">
+    <div class="profile-top-banner">
+      <p class="profile-badge">Account Center</p>
+      <h1>Your Foodie Profile</h1>
+      <p>Track your orders, manage your delivery details, and keep your account up to date.</p>
+    </div>
 
-      <h2>My Profile 👤</h2>
-      <p class="subtitle">Manage your account details</p>
+    <div class="profile-grid">
 
-      <!-- User Info -->
-      <div class="profile-info">
-        <p><strong>Name:</strong> <span id="userName">-</span></p>
-        <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="profile-avatar">👤</div>
+          <div>
+            <h2 id="userName">-</h2>
+            <p id="userEmail">-</p>
+            <p id="userPhone">+91 XXXXXXX</p>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item"><span id="totalOrders">0</span><small>Orders</small></div>
+          <div class="stat-item"><span id="totalSpent">₹0</span><small>Spent</small></div>
+          <div class="stat-item"><span id="favoriteCount">0</span><small>Favorite</small></div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="btn-edit" onclick="editProfile()">Edit Profile</button>
+          <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="address-section">
+          <h4>Delivery Address</h4>
+          <textarea id="address" placeholder="Add your full delivery address"></textarea>
+          <button onclick="saveAddress()">Save Address</button>
+        </div>
       </div>
 
-      <!-- Address -->
-      <div class="address-section">
-        <h3>Delivery Address</h3>
-        <textarea id="address" placeholder="Enter your address"></textarea>
-        <button onclick="saveAddress()">Save Address</button>
-      </div>
+      <div class="dashboard-card">
+        <h3>Dashboard Insights</h3>
 
-      <!-- Logout -->
-      <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="recent-orders-card">
+          <h4>Recent Orders</h4>
+          <div id="recentOrders" class="orders-grid"></div>
+        </div>
+
+        <div class="order-history">
+          <h4>Order History</h4>
+          <div id="orderHistory"></div>
+        </div>
+      </div>
 
     </div>
   </section>

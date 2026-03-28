@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body>
+<body class="admin-dashboard-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie Admin</div>
@@ -21,36 +24,84 @@
   </nav>
 </header>
 
-<section class="admin-panel">
-  <h2>Admin Dashboard 📊</h2>
-  <p>Welcome to the Foodie Admin Panel. Manage your restaurant, users, and orders from here.</p>
-
-  <div class="admin-grid">
-    <div class="admin-card">
-      <h3>Total Users</h3>
-      <p style="font-size: 28px; color: #ff4d4d;" id="totalUsers">0</p>
-      <button onclick="goToAdminPage('manage-users')">Manage Users</button>
+<main class="admin-dashboard-wrap">
+  <section class="admin-panel admin-intro">
+    <div>
+      <span class="admin-badge">Control Center</span>
+      <h1>Dashboard Overview</h1>
+      <p>Monitor platform activity, manage operations, and keep your Foodie ecosystem running smoothly.</p>
     </div>
+    <a class="admin-primary-btn" href="manage-orders.html">Review Latest Orders</a>
+  </section>
 
-    <div class="admin-card">
-      <h3>Total Orders</h3>
-      <p style="font-size: 28px; color: #ff4d4d;" id="totalOrders">0</p>
-      <button onclick="goToAdminPage('manage-orders')">View Orders</button>
-    </div>
+  <section class="admin-panel">
+    <div class="admin-grid stats-grid">
+      <article class="admin-card stat-card">
+        <p class="stat-label">Total Users</p>
+        <p class="stat-value" id="totalUsers">0</p>
+        <a class="card-link" href="manage-users.html">Manage Users</a>
+      </article>
 
-    <div class="admin-card">
-      <h3>Food Items</h3>
-      <p style="font-size: 28px; color: #ff4d4d;" id="totalFoods">0</p>
-      <button onclick="goToAdminPage('manage-food')">Manage Food</button>
-    </div>
+      <article class="admin-card stat-card">
+        <p class="stat-label">Total Orders</p>
+        <p class="stat-value" id="totalOrders">0</p>
+        <a class="card-link" href="manage-orders.html">View Orders</a>
+      </article>
 
-    <div class="admin-card">
-      <h3>Restaurants</h3>
-      <p style="font-size: 28px; color: #ff4d4d;" id="totalRestaurants">2</p>
-      <button onclick="goToAdminPage('manage-restaurants')">Manage Restaurants</button>
+      <article class="admin-card stat-card">
+        <p class="stat-label">Food Items</p>
+        <p class="stat-value" id="totalFoods">0</p>
+        <a class="card-link" href="manage-food.html">Manage Menu</a>
+      </article>
+
+      <article class="admin-card stat-card">
+        <p class="stat-label">Restaurants</p>
+        <p class="stat-value" id="totalRestaurants">2</p>
+        <a class="card-link" href="manage-restaurants.html">Manage Restaurants</a>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="admin-panel admin-grid insights-grid">
+    <article class="admin-card">
+      <h3>Quick Actions</h3>
+      <p class="muted">Move quickly between high-frequency management tasks.</p>
+      <div class="action-links">
+        <a href="manage-users.html">User Administration</a>
+        <a href="manage-orders.html">Order Processing</a>
+        <a href="manage-food.html">Menu Configuration</a>
+        <a href="manage-restaurants.html">Restaurant Settings</a>
+      </div>
+    </article>
+
+    <article class="admin-card">
+      <h3>Operations Snapshot</h3>
+      <p class="muted">A compact view of current system health metrics.</p>
+      <table class="admin-table compact-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Order Fulfillment</td>
+            <td><span class="status good">Stable</span></td>
+          </tr>
+          <tr>
+            <td>User Signups</td>
+            <td><span class="status good">Growing</span></td>
+          </tr>
+          <tr>
+            <td>Menu Health</td>
+            <td><span class="status warning">Review Needed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+</main>
 
 <script src="../js/admin.js"></script>
 </body>

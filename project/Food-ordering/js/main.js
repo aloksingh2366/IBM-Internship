@@ -1,47 +1,47 @@
 const foods = [
   // Deal of the Day (bestseller)
-  { name: "Chicken Biryani Combo", price: 299, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Paneer Butter Masala + Naan", price: 249, category: "bestseller", type: "curry", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjSBDdXJyeTwvdGV4dD48L3N2Zz4=" },
-  { name: "Veg Thali", price: 199, category: "bestseller", type: "thali", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBUSEFMSTwvdGV4dD48L3N2Zz4=" },
-  { name: "Chicken Thali", price: 349, category: "bestseller", type: "thali", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBUSEFMSTwvdGV4dD48L3N2Zz4=" },
-  { name: "Burger + Fries Combo", price: 199, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Pizza Combo Meal", price: 399, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Rolls Combo", price: 149, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Family Pack Biryani", price: 599, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Dal Makhani + Rice", price: 179, category: "bestseller", type: "curry", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjSBDdXJyeTwvdGV4dD48L3N2Zz4=" },
-  { name: "Rajma Chawal", price: 149, category: "bestseller", type: "curry", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjSBDdXJyeTwvdGV4dD48L3N2Zz4=" },
-  { name: "Egg Curry Combo", price: 199, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Fried Rice Combo", price: 179, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Noodles Combo", price: 169, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Pav Bhaji Combo", price: 129, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Chole Bhature Combo", price: 149, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Tandoori Chicken Combo", price: 299, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Fish Curry Combo", price: 249, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Veg Pulao Combo", price: 159, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Cheese Burst Pizza Combo", price: 449, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
-  { name: "Dessert Combo Meal", price: 199, category: "bestseller", type: "combo", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBDb21ibzwvdGV4dD48L3N2Zz4=" },
+  { name: "Chicken Biryani Combo", price: 299, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Paneer Butter Masala + Naan", price: 249, category: "bestseller", type: "curry", image: "assets/images/food/curry.jpg" },
+  { name: "Veg Thali", price: 199, category: "bestseller", type: "thali", image: "assets/images/food/rice.jpg" },
+  { name: "Chicken Thali", price: 349, category: "bestseller", type: "thali", image: "assets/images/food/rice.jpg" },
+  { name: "Burger + Fries Combo", price: 199, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Pizza Combo Meal", price: 399, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Rolls Combo", price: 149, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Family Pack Biryani", price: 599, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Dal Makhani + Rice", price: 179, category: "bestseller", type: "curry", image: "assets/images/food/curry.jpg" },
+  { name: "Rajma Chawal", price: 149, category: "bestseller", type: "curry", image: "assets/images/food/curry.jpg" },
+  { name: "Egg Curry Combo", price: 199, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Fried Rice Combo", price: 179, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Noodles Combo", price: 169, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Pav Bhaji Combo", price: 129, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Chole Bhature Combo", price: 149, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Tandoori Chicken Combo", price: 299, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Fish Curry Combo", price: 249, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Veg Pulao Combo", price: 159, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Cheese Burst Pizza Combo", price: 449, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
+  { name: "Dessert Combo Meal", price: 199, category: "bestseller", type: "combo", image: "assets/images/food/pizza.jpg" },
 
   // Hyderabadi Biryani (bestseller)
-  { name: "Hyderabadi Chicken Biryani", price: 299, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Hyderabadi Mutton Biryani", price: 399, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Hyderabadi Egg Biryani", price: 249, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Hyderabadi Veg Biryani", price: 229, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Paneer Biryani", price: 279, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Dum Chicken Biryani", price: 349, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Spicy Chicken Biryani", price: 319, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Boneless Chicken Biryani", price: 329, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Keema Biryani", price: 379, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Fish Biryani", price: 349, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Prawn Biryani", price: 399, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Double Masala Biryani", price: 359, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Special Family Biryani", price: 599, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Tandoori Chicken Biryani", price: 379, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Butter Chicken Biryani", price: 389, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Mushroom Biryani", price: 259, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Soya Biryani", price: 239, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Nawabi Biryani", price: 419, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Hyderabadi Dum Mutton Biryani", price: 449, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
-  { name: "Extra Spicy Biryani", price: 339, category: "bestseller", type: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjCBEaWFtb25kPC90ZXh0Pjwvc3ZnPg==" },
+  { name: "Hyderabadi Chicken Biryani", price: 299, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Hyderabadi Mutton Biryani", price: 399, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Hyderabadi Egg Biryani", price: 249, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Hyderabadi Veg Biryani", price: 229, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Paneer Biryani", price: 279, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Dum Chicken Biryani", price: 349, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Spicy Chicken Biryani", price: 319, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Boneless Chicken Biryani", price: 329, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Keema Biryani", price: 379, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Fish Biryani", price: 349, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Prawn Biryani", price: 399, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Double Masala Biryani", price: 359, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Special Family Biryani", price: 599, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Tandoori Chicken Biryani", price: 379, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Butter Chicken Biryani", price: 389, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Mushroom Biryani", price: 259, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Soya Biryani", price: 239, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Nawabi Biryani", price: 419, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Hyderabadi Dum Mutton Biryani", price: 449, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
+  { name: "Extra Spicy Biryani", price: 339, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
 
   // Lucknowi Biryani (bestseller)
   { name: "Lucknowi Chicken Biryani", price: 319, category: "bestseller", type: "biryani", image: "assets/images/food/biryani.jpg" },
@@ -224,17 +224,32 @@ const container = document.getElementById("foodContainer");
 const categoryCards = document.getElementById("categoryCards");
 const categoryFilters = document.getElementById("categoryFilters");
 
+if (!localStorage.getItem("foods")) {
+  localStorage.setItem("foods", JSON.stringify(foods));
+}
+
 const categoryList = [
-  { title: "Deal of the Day", tag: "bestseller", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBEZWFsczwvdGV4dD48L3N2Zz4=" },
-  { title: "Hyderabadi Biryani", tag: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBCaXJ5YW5pPC90ZXh0Pjwvc3ZnPg==" },
-  { title: "Lucknowi Biryani", tag: "biryani", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBCaXJ5YW5pPC90ZXh0Pjwvc3ZnPg==" },
-  { title: "Kebabs", tag: "kebab", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBLZWJhYnM8L3RleHQ+PC9zdmc+" },
-  { title: "Korma & Curries", tag: "curry", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBDdXJyeTwvdGV4dD48L3N2Zz4=" },
-  { title: "Rolls", tag: "rolls", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBSb2xsczwvdGV4dD48L3N2Zz4=" },
-  { title: "Breads & Extras", tag: "bread", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjFCcmVhZDwvdGV4dD48L3N2Zz4=" },
-  { title: "Fast Food", tag: "fastfood", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBGYXN0IEZvb2Q8L3RleHQ+PC9zdmc+" },
-  { title: "Desserts", tag: "dessert", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjBEZXNzZXJ0PC90ZXh0Pjwvc3ZnPg==" },
-  { title: "Beverages", tag: "beverage", image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZlZjNmZSIvPjx0ZXh0IHg9IjEwMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSI+8J+RjRCZXZlcmFnZXM8L3RleHQ+PC9zdmc+" }
+  { title: "Deal of the Day", tag: "bestseller", image: "assets/images/food/pizza.jpg" },
+  { title: "Biryani", tag: "biryani", image: "assets/images/food/biryani.jpg" },
+  { title: "Bread", tag: "bread", image: "assets/images/food/bread.jpg" },
+  { title: "Burgers", tag: "fastfood", image: "assets/images/food/burger.jpg" },
+  { title: "Curries", tag: "curry", image: "assets/images/food/curry.jpg" },
+  { title: "Desserts", tag: "dessert", image: "assets/images/food/dessert.jpg" },
+  { title: "Drinks", tag: "beverage", image: "assets/images/food/drink.jpg" },
+  { title: "Fries", tag: "fastfood", image: "assets/images/food/fries.jpg" },
+  { title: "Hot Dog", tag: "fastfood", image: "assets/images/food/hotdog.jpg" },
+  { title: "Kebabs", tag: "kebab", image: "assets/images/food/kebab.jpg" },
+  { title: "Manchurian", tag: "fastfood", image: "assets/images/food/manchurian.jpg" },
+  { title: "Momos", tag: "fastfood", image: "assets/images/food/momos.jpg" },
+  { title: "Noodles", tag: "fastfood", image: "assets/images/food/noodles.jpg" },
+  { title: "Pasta", tag: "fastfood", image: "assets/images/food/pasta.jpg" },
+  { title: "Pizza", tag: "fastfood", image: "assets/images/food/pizza.jpg" },
+  { title: "Raita", tag: "side", image: "assets/images/food/raita.jpg" },
+  { title: "Rice", tag: "rice", image: "assets/images/food/rice.jpg" },
+  { title: "Rolls", tag: "rolls", image: "assets/images/food/roll.jpg" },
+  { title: "Sandwich", tag: "fastfood", image: "assets/images/food/sandwich.jpg" },
+  { title: "Spring Rolls", tag: "fastfood", image: "assets/images/food/springroll.jpg" },
+  { title: "Sushi", tag: "fastfood", image: "assets/images/food/sushi.jpg" }
 ];
 
 function loadCategoryCards() {
@@ -259,7 +274,9 @@ function renderFoods(filter = 'all') {
   let filtered = foods;
   if (filter !== 'all') {
     if (filter === 'bestseller') {
-      filtered = foods.filter(food => food.category === 'bestseller');
+      filtered = foods
+        .filter(food => food.category === 'bestseller')
+        .slice(0, 10);
     } else if (filter === 'veg') {
       filtered = foods.filter(food => {
         if (food.category === 'veg') return true;
@@ -301,13 +318,16 @@ function renderFoods(filter = 'all') {
     return `
       <div class="food-card" onclick="openDishModal(${idx})">
         <img src="${food.image}" alt="${food.name}">
-        <button class="wishlist-icon" onclick="event.stopPropagation(); toggleWishlistQuick('${food.name}', ${food.price})" title="Add to Wishlist">
-          <span class="heart ${isWishlisted ? 'filled' : ''}">${isWishlisted ? '♥' : '♡'}</span>
-        </button>
         <h3>${food.name}</h3>
         <p>₹${food.price}</p>
         <div class="tag">${food.category}</div>
-        <button onclick="event.stopPropagation(); addToCart('${food.name}', ${food.price})">Add to Cart</button>
+        <div class="food-card-actions">
+          <button class="card-icon-btn card-share-btn" title="Share" onclick="event.stopPropagation(); shareDish('${food.name}')">🔗</button>
+          <button class="card-icon-btn card-wishlist-btn ${isWishlisted ? 'wishlisted' : ''}" onclick="event.stopPropagation(); toggleWishlistQuick('${food.name}', ${food.price})" title="Add to Wishlist">
+            ${isWishlisted ? '♥' : '♡'}
+          </button>
+          <button class="card-add-to-cart-btn" onclick="event.stopPropagation(); addToCart('${food.name}', ${food.price})">Add To Bag</button>
+        </div>
       </div>
     `;
   }).join("");
@@ -378,6 +398,19 @@ function toggleWishlistQuick(name, price) {
   renderFoods();
 }
 
+function shareDish(name) {
+  const message = `Check out this dish on Foodie: ${name}!`;
+  if (navigator.share) {
+    navigator.share({ title: 'Foodie', text: message }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(message).then(() => {
+      alert('Dish link copied!');
+    }).catch(() => {
+      alert(message);
+    });
+  }
+}
+
 function addToCartFromModal() {
   if (currentDish) {
     addToCart(currentDish.name, currentDish.price);
@@ -445,12 +478,26 @@ function searchFood() {
 // Allow Enter key to trigger search
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById("searchInput");
+  const navSearchLink = document.querySelector('a[href="search.html"]');
+
   if (searchInput) {
     searchInput.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
         searchFood();
       }
     });
+
+    if (navSearchLink) {
+      navSearchLink.addEventListener('click', function(event) {
+        const query = searchInput.value.trim();
+        if (!query) {
+          return;
+        }
+
+        event.preventDefault();
+        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      });
+    }
   }
 });
 
@@ -465,3 +512,25 @@ categoryFilters?.querySelectorAll('.filter-btn').forEach(button => {
 
 loadCategoryCards();
 renderFoods();
+
+// Update navbar based on user role
+function updateNavbarVisibility() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const adminLink = document.querySelector('a[href*="admin"]');
+  const loginLink = document.querySelector('a[href="login.html"]');
+  
+  if (loginLink) {
+    loginLink.style.display = user ? 'none' : 'inline-block';
+  }
+
+  if (adminLink) {
+    if (user && user.role === 'admin') {
+      adminLink.style.display = 'inline-block';
+    } else {
+      adminLink.style.display = 'none';
+    }
+  }
+}
+
+// Initialize navbar visibility
+updateNavbarVisibility();

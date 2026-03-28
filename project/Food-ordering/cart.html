@@ -5,30 +5,54 @@
   <title>Cart - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="cart-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
   <nav>
     <a href="index.html">Home</a>
     <a href="restaurants.html">Restaurants</a>
-    <a href="search.html">Search 🔍</a>
-    <a href="profile.html">Profile 👤</a>
+    <a href="search.html">Search</a>
+    <a href="profile.html">Profile</a>
   </nav>
 </header>
 
 <section class="cart">
-  <h2>Your Cart 🛒</h2>
+  <div class="cart-hero">
+    <p class="cart-badge">Checkout Center</p>
+    <h2>Your Cart</h2>
+    <p>Review your selected items, apply coupons, and complete your order securely.</p>
+  </div>
 
-  <div id="cartContainer"></div>
+  <div class="cart-grid">
+    <div class="cart-items">
+      <div id="cartContainer"></div>
+    </div>
 
-  <div class="cart-summary">
-    <h3>Total: ₹<span id="totalPrice">0</span></h3>
-    <button onclick="goToCheckout()">Proceed to Checkout</button>
+    <aside class="bill-summary">
+      <h3>Bill Summary</h3>
+      <div class="bill-row"><span>Subtotal</span><span>₹<span id="subtotal">0</span></span></div>
+      <div class="bill-row"><span>Delivery</span><span>₹<span id="deliveryFee">40</span></span></div>
+      <div class="bill-row"><span>Discount</span><span>-₹<span id="discountAmount">0</span></span></div>
+      <hr>
+      <div class="bill-row total"><span>Total</span><span>₹<span id="totalPrice">0</span></span></div>
+
+      <div class="coupon-box">
+        <input type="text" id="couponCode" placeholder="Coupon code" />
+        <button onclick="applyCoupon()">Apply Coupon</button>
+      </div>
+
+      <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+      <small class="coupon-msg" id="couponMessage"></small>
+    </aside>
   </div>
 </section>
 

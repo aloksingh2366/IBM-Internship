@@ -5,87 +5,103 @@
   <title>Order Success - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-  <style>
-    .success-container {
-      height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .success-box {
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      max-width: 400px;
-    }
-
-    .success-box h1 {
-      color: green;
-      margin-bottom: 10px;
-    }
-
-    .success-box p {
-      color: gray;
-      margin-bottom: 20px;
-    }
-
-    .success-box button {
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .home-btn {
-      background: #ff4d4d;
-      color: white;
-    }
-
-    .orders-btn {
-      background: black;
-      color: white;
-    }
-
-    .tick {
-      font-size: 60px;
-      margin-bottom: 15px;
-    }
-  </style>
 </head>
-<body>
+<body class="order-success-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
   <nav>
     <a href="index.html">Home</a>
-    <a href="orders.html">Orders 📦</a>
+    <a href="orders.html">Orders</a>
   </nav>
 </header>
 
-<div class="success-container">
-  <div class="success-box">
-
-    <div class="tick">✅</div>
-
-    <h1>Order Placed!</h1>
-    <p>Your food is on the way 🚀</p>
-
-    <p>Estimated delivery: <strong>30-40 mins</strong></p>
-
-    <button class="home-btn" onclick="goHome()">Go to Home</button>
-    <button class="orders-btn" onclick="viewOrders()">View Orders</button>
-
+<section class="success-page-wrap">
+  <div class="success-hero">
+    <p class="success-badge">Order Confirmed</p>
+    <h1>Your order has been placed</h1>
+    <p>We have sent your order to the kitchen. Sit back while we prepare and deliver it fresh.</p>
   </div>
-</div>
+
+  <div class="success-grid">
+    <article class="success-card">
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <h2>Thank you for ordering with Foodie</h2>
+      <p>Your order is now being processed and will be dispatched soon.</p>
+
+      <div class="success-stats">
+        <div>
+          <span>Order ID</span>
+          <strong id="orderId">#0000</strong>
+        </div>
+        <div>
+          <span>Items</span>
+          <strong id="orderItems">0</strong>
+        </div>
+        <div>
+          <span>Total</span>
+          <strong id="orderTotal">₹0</strong>
+        </div>
+      </div>
+
+      <p class="delivery-estimate">Estimated delivery: <strong id="deliveryEta">30-40 mins</strong></p>
+
+      <div class="success-actions">
+        <button class="success-primary-btn" onclick="goHome()">Continue Shopping</button>
+        <button class="success-secondary-btn" onclick="viewOrders()">Track Orders</button>
+      </div>
+    </article>
+
+    <aside class="success-timeline">
+      <h3>What happens next</h3>
+      <ul>
+        <li class="active">
+          <strong>Order Confirmed</strong>
+          <span>We've received your order successfully.</span>
+        </li>
+        <li>
+          <strong>Preparing Food</strong>
+          <span>Our restaurant partner is cooking your meal.</span>
+        </li>
+        <li>
+          <strong>Out for Delivery</strong>
+          <span>Your rider picks up and heads to your location.</span>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
 
 <script>
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const latestOrder = orders.length ? orders[orders.length - 1] : [];
+
+  const totals = latestOrder.reduce((acc, item) => {
+    const qty = Number(item.quantity) || 1;
+    const price = Number(item.price) || 0;
+    acc.items += qty;
+    acc.total += price * qty;
+    return acc;
+  }, { items: 0, total: 0 });
+
+  const orderNumber = 1000 + orders.length;
+  document.getElementById("orderId").textContent = `#${orderNumber}`;
+  document.getElementById("orderItems").textContent = totals.items;
+  document.getElementById("orderTotal").textContent = `₹${totals.total}`;
+
+  if (!orders.length) {
+    document.getElementById("orderId").textContent = "#N/A";
+    document.getElementById("orderItems").textContent = "0";
+    document.getElementById("orderTotal").textContent = "₹0";
+  }
+
   function goHome() {
     window.location.href = "index.html";
   }

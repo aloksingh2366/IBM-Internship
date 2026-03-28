@@ -15,6 +15,19 @@
   .menu-container {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+
+  /* Login Page Responsive */
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .login-brand {
+    padding: 40px;
+  }
+
+  .auth-box {
+    padding: 40px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -76,6 +89,52 @@
 
   .auth-box {
     width: 90%;
+  }
+
+  /* Login Page Responsive */
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .login-brand {
+    padding: 30px;
+    text-align: center;
+  }
+
+  .login-brand h1 {
+    font-size: 36px;
+  }
+
+  .auth-box {
+    padding: 40px 30px;
+  }
+
+  .brand-features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .brand-features li {
+    margin-bottom: 0;
+  }
+
+  /* Signup Page Responsive */
+  .signup-wrapper {
+    flex-direction: column;
+  }
+
+  .signup-box {
+    padding: 40px 30px;
+    max-height: none;
+  }
+
+  .type-options {
+    flex-direction: column;
+  }
+
+  .type-option {
+    width: 100%;
   }
 }
 
@@ -152,5 +211,210 @@
 
   .admin-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Login Page Mobile */
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .login-brand {
+    padding: 25px;
+  }
+
+  .login-brand h1 {
+    font-size: 28px;
+  }
+
+  .login-brand p {
+    font-size: 14px;
+  }
+
+  .brand-icon {
+    font-size: 60px;
+  }
+
+  .brand-features {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .brand-features li {
+    font-size: 12px;
+  }
+
+  .auth-box {
+    padding: 25px 20px;
+  }
+
+  .form-header h2 {
+    font-size: 24px;
+  }
+
+  .form-header p {
+    font-size: 12px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
+  .signup-form {
+    gap: 14px;
+  }
+
+  .type-options {
+    flex-direction: column;
+  }
+
+  .type-option {
+    width: 100%;
+  }
+
+  .type-label small {
+    font-size: 11px;
+  }
+
+  .terms-checkbox label {
+    font-size: 11px;
+  }
+
+  .btn-login,
+  .btn-signup {
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+
+  .social-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .password-hint {
+    font-size: 11px;
+  }
+}
+
+/* Home page specific responsive tuning */
+@media (max-width: 1024px) {
+  .home-page .food-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page .hero {
+    width: 100%;
+    border-radius: 0;
+    padding: 24px 18px;
+    text-align: center;
+  }
+
+  .home-page .search-box input {
+    width: min(100%, 450px);
+  }
+
+  .home-page .categories-section,
+  .home-page .foods,
+  .home-page .value-strip {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-page .food-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page .hero {
+    padding: 20px 14px;
+  }
+
+  .home-page .hero h1 {
+    font-size: 1.9rem;
+    line-height: 1.15;
+  }
+
+  .home-page .hero p {
+    font-size: 0.95rem;
+  }
+
+  .home-page .search-box input,
+  .home-page .search-box button {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .home-page .food-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Profile page specific responsive tuning */
+@media (max-width: 768px) {
+  .profile-page .profile {
+    padding: 14px;
+  }
+
+  .profile-page .profile-top-banner {
+    border-radius: 16px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page .profile-top-banner h1 {
+    font-size: 1.7rem;
+    line-height: 1.15;
+  }
+}
+
+/* Cart page specific responsive tuning */
+@media (max-width: 768px) {
+  .cart-page .cart {
+    padding: 14px;
+  }
+
+  .cart-page .cart-hero {
+    border-radius: 16px;
+    padding: 18px;
+  }
+
+  .cart-page .cart-item {
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+  }
+
+  .cart-page .quantity-controls,
+  .cart-page .item-total {
+    grid-column: 1 / -1;
+  }
+
+  .cart-page .item-total {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-page .cart-hero h2 {
+    font-size: 1.7rem;
+    line-height: 1.15;
+  }
+}
+
+/* Restaurants page specific responsive tuning */
+@media (max-width: 480px) {
+  .restaurants-page .explorer-header h2 {
+    font-size: 1.7rem;
+    line-height: 1.15;
   }
 }

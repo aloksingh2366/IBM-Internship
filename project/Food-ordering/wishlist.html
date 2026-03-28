@@ -5,11 +5,15 @@
   <title>Wishlist - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="wishlist-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
@@ -22,30 +26,187 @@
   </nav>
 </header>
 
-<section class="cart">
-  <h2>Your Wishlist ❤️</h2>
-  <div id="wishlistContainer"></div>
-</section>
+<main class="wishlist-wrap">
+  <section class="wishlist-hero">
+    <p class="wishlist-badge">Saved Picks</p>
+    <h2>Your Wishlist</h2>
+    <p>Keep your favorite dishes here and move them to cart anytime with one click.</p>
+  </section>
 
-<script src="js/search.js"></script>
+  <section class="wishlist-stats">
+    <article class="wishlist-stat-card">
+      <span>Saved Items</span>
+      <strong id="wishlistCount">0</strong>
+    </article>
+    <article class="wishlist-stat-card">
+      <span>Total Value</span>
+      <strong id="wishlistValue">₹0</strong>
+    </article>
+  </section>
+
+  <section class="wishlist-controls">
+    <button class="wishlist-primary-btn" id="moveAllBtn" type="button">Move All To Cart</button>
+    <button class="wishlist-danger-btn" id="clearWishlistBtn" type="button">Clear Wishlist</button>
+  </section>
+
+  <section class="wishlist-list" id="wishlistContainer"></section>
+</main>
 
 <script>
-  const container = document.getElementById("wishlistContainer");
-  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  const wishlistContainer = document.getElementById('wishlistContainer');
+  const wishlistCount = document.getElementById('wishlistCount');
+  const wishlistValue = document.getElementById('wishlistValue');
+  const moveAllBtn = document.getElementById('moveAllBtn');
+  const clearWishlistBtn = document.getElementById('clearWishlistBtn');
 
-  if (wishlist.length === 0) {
-    container.innerHTML = "<p>No items in wishlist</p>";
-  } else {
-    container.innerHTML = wishlist.map((item, index) => `
-      <div class="cart-item">
-        <h4>${item.name}</h4>
-        <p>₹${item.price}</p>
-        <button onclick="addToCart('${item.name}', ${item.price})">
-          Move to Cart
-        </button>
-      </div>
-    `).join("");
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
   }
+
+  function getWishlist() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    if (!Array.isArray(wishlist)) return [];
+
+    return wishlist
+      .filter((item) => item && item.name)
+      .map((item) => ({
+        name: String(item.name),
+        price: Number(item.price) || 0,
+        category: item.category || 'favorite',
+        image: item.image || 'assets/images/food/pizza.jpg'
+      }));
+  }
+
+  function setWishlist(items) {
+    localStorage.setItem('wishlist', JSON.stringify(items));
+  }
+
+  function getCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    return Array.isArray(cart) ? cart : [];
+  }
+
+  function setCart(items) {
+    localStorage.setItem('cart', JSON.stringify(items));
+  }
+
+  function renderWishlist() {
+    const wishlist = getWishlist();
+    const totalValue = wishlist.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
+
+    wishlistCount.textContent = wishlist.length;
+    wishlistValue.textContent = `₹${totalValue}`;
+
+    moveAllBtn.disabled = wishlist.length === 0;
+    clearWishlistBtn.disabled = wishlist.length === 0;
+
+    if (!wishlist.length) {
+      wishlistContainer.innerHTML = `
+        <article class="wishlist-empty">
+          <h3>Your wishlist is empty</h3>
+          <p>Browse dishes and tap wishlist to save your favorite meals for later.</p>
+          <a href="search.html" class="wishlist-empty-btn">Explore Dishes</a>
+        </article>
+      `;
+      return;
+    }
+
+    wishlistContainer.innerHTML = wishlist.map((item, index) => `
+      <article class="wishlist-card">
+        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="wishlist-card-image">
+        <div class="wishlist-card-body">
+          <div class="wishlist-card-top">
+            <h3>${escapeHtml(item.name)}</h3>
+            <span class="wishlist-card-category">${escapeHtml(item.category)}</span>
+          </div>
+          <p class="wishlist-card-price">₹${item.price}</p>
+          <div class="wishlist-card-actions">
+            <button type="button" class="wishlist-primary-btn" data-move="${index}">Move To Cart</button>
+            <button type="button" class="wishlist-danger-btn" data-remove="${index}">Remove</button>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function moveWishlistItemToCart(index) {
+    const wishlist = getWishlist();
+    if (index < 0 || index >= wishlist.length) return;
+
+    const selected = wishlist[index];
+    const cart = getCart();
+    cart.push({
+      name: selected.name,
+      price: selected.price,
+      category: selected.category,
+      image: selected.image,
+      quantity: 1
+    });
+    setCart(cart);
+
+    wishlist.splice(index, 1);
+    setWishlist(wishlist);
+    renderWishlist();
+  }
+
+  function removeWishlistItem(index) {
+    const wishlist = getWishlist();
+    if (index < 0 || index >= wishlist.length) return;
+
+    wishlist.splice(index, 1);
+    setWishlist(wishlist);
+    renderWishlist();
+  }
+
+  function moveAllWishlistToCart() {
+    const wishlist = getWishlist();
+    if (!wishlist.length) return;
+
+    const cart = getCart();
+    wishlist.forEach((item) => {
+      cart.push({
+        name: item.name,
+        price: item.price,
+        category: item.category,
+        image: item.image,
+        quantity: 1
+      });
+    });
+
+    setCart(cart);
+    setWishlist([]);
+    renderWishlist();
+    alert('All wishlist items moved to cart.');
+  }
+
+  function clearWishlist() {
+    if (!confirm('Clear all wishlist items?')) return;
+    setWishlist([]);
+    renderWishlist();
+  }
+
+  wishlistContainer.addEventListener('click', (event) => {
+    const moveBtn = event.target.closest('[data-move]');
+    if (moveBtn) {
+      moveWishlistItemToCart(Number(moveBtn.dataset.move));
+      return;
+    }
+
+    const removeBtn = event.target.closest('[data-remove]');
+    if (removeBtn) {
+      removeWishlistItem(Number(removeBtn.dataset.remove));
+    }
+  });
+
+  moveAllBtn.addEventListener('click', moveAllWishlistToCart);
+  clearWishlistBtn.addEventListener('click', clearWishlist);
+
+  renderWishlist();
 </script>
 
 </body>

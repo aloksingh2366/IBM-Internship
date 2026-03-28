@@ -5,11 +5,15 @@
   <title>Checkout - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="checkout-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
@@ -20,50 +24,145 @@
 </header>
 
 <section class="checkout">
-  <h2>Checkout 💳</h2>
-
-  <!-- Address -->
-  <div class="checkout-box">
-    <h3>Delivery Address</h3>
-    <textarea id="address" placeholder="Enter your address"></textarea>
+  <div class="checkout-hero">
+    <p class="checkout-badge">Secure Checkout</p>
+    <h2>Confirm Your Order</h2>
+    <p>Review your delivery details, payment method, and total before placing your order.</p>
   </div>
 
-  <!-- Payment -->
-  <div class="checkout-box">
-    <h3>Payment Method</h3>
-    <select id="payment">
-      <option value="cod">Cash on Delivery</option>
-      <option value="upi">UPI</option>
-      <option value="card">Card</option>
-    </select>
+  <div class="checkout-grid">
+    <div class="checkout-details">
+      <div class="checkout-box">
+        <h3>Delivery Address</h3>
+        <textarea id="address" placeholder="Enter your full delivery address"></textarea>
+      </div>
+
+      <div class="checkout-box">
+        <h3>Payment Method</h3>
+        <div class="checkout-payment-options">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cod" checked>
+            <span>Cash on Delivery</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="upi">
+            <span>UPI</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="card">
+            <span>Card</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <aside class="checkout-summary" id="checkoutSummary">
+      <h3>Order Summary</h3>
+      <div id="checkoutItems" class="checkout-items"></div>
+
+      <div class="checkout-summary-row">
+        <span>Subtotal</span>
+        <strong>₹<span id="subTotal">0</span></strong>
+      </div>
+      <div class="checkout-summary-row">
+        <span>Delivery Fee</span>
+        <strong>₹<span id="deliveryFee">40</span></strong>
+      </div>
+      <div class="checkout-summary-row total">
+        <span>Total</span>
+        <strong>₹<span id="finalTotal">0</span></strong>
+      </div>
+
+      <button id="placeOrderBtn" class="checkout-place-btn" onclick="placeOrder()">Place Order</button>
+    </aside>
   </div>
-
-
-  <!-- Summary -->
-  <div class="checkout-box">
-    <h3>Total: ₹<span id="finalTotal">0</span></h3>
-    <button onclick="placeOrder()">Place Order</button>
-  </div>
-
 </section>
 
-<script src="js/cart.js"></script>
 <script>
-  // Show total on checkout
+  const DELIVERY_FEE = 40;
   const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-  let total = cartData.reduce((sum, item) => sum + item.price, 0);
-  document.getElementById("finalTotal").innerText = total;
+
+  function getCartTotals(items) {
+    return items.reduce((acc, item) => {
+      const qty = Number(item.quantity) || 1;
+      const price = Number(item.price) || 0;
+      acc.subtotal += price * qty;
+      acc.items += qty;
+      return acc;
+    }, { subtotal: 0, items: 0 });
+  }
+
+  function renderCheckoutSummary() {
+    const itemsEl = document.getElementById("checkoutItems");
+    const summaryEl = document.getElementById("checkoutSummary");
+    const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+    if (!cartData.length) {
+      itemsEl.innerHTML = '<p class="checkout-empty">Your cart is empty.</p>';
+      document.getElementById("subTotal").innerText = 0;
+      document.getElementById("finalTotal").innerText = 0;
+      placeOrderBtn.disabled = true;
+      placeOrderBtn.textContent = "Cart is Empty";
+      summaryEl.classList.add("empty");
+      return;
+    }
+
+    summaryEl.classList.remove("empty");
+
+    itemsEl.innerHTML = cartData.map((item) => {
+      const qty = Number(item.quantity) || 1;
+      const price = Number(item.price) || 0;
+      return `
+        <div class="checkout-item-row">
+          <div>
+            <p class="name">${item.name}</p>
+            <small>Qty ${qty}</small>
+          </div>
+          <strong>₹${price * qty}</strong>
+        </div>
+      `;
+    }).join("");
+
+    const totals = getCartTotals(cartData);
+    const finalTotal = totals.subtotal + DELIVERY_FEE;
+    document.getElementById("subTotal").innerText = totals.subtotal;
+    document.getElementById("deliveryFee").innerText = DELIVERY_FEE;
+    document.getElementById("finalTotal").innerText = finalTotal;
+  }
 
   function placeOrder() {
-    const address = document.getElementById("address").value;
+    if (!cartData.length) {
+      alert("Cart is empty!");
+      return;
+    }
+
+    const address = document.getElementById("address").value.trim();
+    const payment = document.querySelector('input[name="payment"]:checked')?.value;
 
     if (!address) {
       alert("Please enter address!");
       return;
     }
+
+    if (!payment) {
+      alert("Please select a payment method!");
+      return;
+    }
+
+    const totals = getCartTotals(cartData);
+    const finalTotal = totals.subtotal + DELIVERY_FEE;
+
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    orders.push(cartData);
+    orders.push({
+      items: cartData,
+      total: finalTotal,
+      payment,
+      address,
+      date: new Date().toISOString()
+    });
     localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.setItem("deliveryAddress", address);
 
     alert("Order placed successfully! 🎉");
 
@@ -71,6 +170,13 @@
 
     window.location.href = "order-success.html";
   }
+
+  const savedAddress = localStorage.getItem("deliveryAddress") || "";
+  if (savedAddress) {
+    document.getElementById("address").value = savedAddress;
+  }
+
+  renderCheckoutSummary();
 </script>
 </body>
 </html>

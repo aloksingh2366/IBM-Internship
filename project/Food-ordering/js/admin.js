@@ -1,4 +1,12 @@
 /* Admin Dashboard JS */
+
+// Check if user is admin
+const currentUser = JSON.parse(localStorage.getItem('user'));
+if (!currentUser || currentUser.role !== 'admin') {
+  alert('Access denied! Admin privileges required.');
+  window.location.href = '../index.html';
+}
+
 function loadAdminStats(){
   const users = JSON.parse(localStorage.getItem('users')) || [];
   const orders = JSON.parse(localStorage.getItem('orders')) || [];

@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>Manage Restaurants - Foodie Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body>
+<body class="admin-dashboard-page restaurants-management-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie Admin</div>
@@ -20,49 +23,104 @@
   </nav>
 </header>
 
-<section class="admin-panel">
-  <h2>Manage Restaurants 🏪</h2>
+<main class="admin-dashboard-wrap restaurants-manage-wrap">
+  <section class="admin-panel admin-intro restaurants-intro">
+    <div>
+      <p class="admin-badge">Restaurant Directory</p>
+      <h1>Manage Restaurants</h1>
+      <p>Add partner restaurants, monitor onboarding growth, and remove inactive listings.</p>
+    </div>
+    <a class="admin-primary-btn" href="dashboard.html">Back to Dashboard</a>
+  </section>
 
-  <div style="margin-bottom: 20px;">
-    <h3>Add New Restaurant</h3>
-    <input type="text" id="restName" placeholder="Restaurant Name" style="padding: 8px; margin: 5px;">
-    <button onclick="addRestaurant()" style="padding: 8px 15px; background: #ff4d4d; color: white; border: none; cursor: pointer; border-radius: 5px;">Add Restaurant</button>
-  </div>
+  <section class="admin-panel restaurants-controls-card">
+    <div class="restaurants-stat-grid">
+      <div class="restaurants-stat-box">
+        <span class="restaurants-stat-box__label">Total Restaurants</span>
+        <strong class="restaurants-stat-box__value" id="totalRestaurantsCount">0</strong>
+      </div>
+      <div class="restaurants-stat-box">
+        <span class="restaurants-stat-box__label">Latest ID</span>
+        <strong class="restaurants-stat-box__value" id="latestRestaurantId">-</strong>
+      </div>
+      <div class="restaurants-stat-box">
+        <span class="restaurants-stat-box__label">Search Results</span>
+        <strong class="restaurants-stat-box__value" id="restaurantSearchCount">0</strong>
+      </div>
+    </div>
 
-  <table class="admin-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="restaurantsTable">
-      <tr>
-        <td colspan="3">Loading...</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+    <form id="restaurantForm" class="restaurants-form">
+      <label>
+        <span>Restaurant Name</span>
+        <input type="text" id="restName" placeholder="Ex: Spice Villa" required>
+      </label>
+      <button type="submit" class="restaurants-add-btn">Add Restaurant</button>
+    </form>
+
+    <label class="restaurants-search" for="restaurantSearchInput">
+      <span>Search Restaurants</span>
+      <input id="restaurantSearchInput" type="text" placeholder="Search by ID or name..." autocomplete="off">
+    </label>
+  </section>
+
+  <section class="admin-panel restaurants-list-card">
+    <div id="restaurantsContainer" class="restaurants-list-grid"></div>
+  </section>
+</main>
 
 <script>
+  const defaultRestaurants = [
+    { id: 1, name: 'Pizza Palace' },
+    { id: 2, name: 'Burger Hub' }
+  ];
+
+  let allRestaurants = [];
+
+  function updateRestaurantStats(visibleCount) {
+    const totalRestaurantsCount = document.getElementById('totalRestaurantsCount');
+    const latestRestaurantId = document.getElementById('latestRestaurantId');
+    const restaurantSearchCount = document.getElementById('restaurantSearchCount');
+
+    totalRestaurantsCount.textContent = allRestaurants.length;
+    restaurantSearchCount.textContent = visibleCount;
+
+    if (!allRestaurants.length) {
+      latestRestaurantId.textContent = '-';
+      return;
+    }
+
+    latestRestaurantId.textContent = Math.max(...allRestaurants.map(rest => Number(rest.id) || 0));
+  }
+
+  function renderRestaurants(restaurants) {
+    const container = document.getElementById('restaurantsContainer');
+    updateRestaurantStats(restaurants.length);
+
+    if (!restaurants.length) {
+      container.innerHTML = '<p class="restaurants-empty">No matching restaurants found</p>';
+      return;
+    }
+
+    container.innerHTML = restaurants.map((rest) => {
+      const index = allRestaurants.findIndex((r) => Number(r.id) === Number(rest.id) && r.name === rest.name);
+
+      return `
+      <article class="restaurant-item-card">
+        <div class="restaurant-item-card__top">
+          <h3>${rest.name}</h3>
+          <span class="restaurant-id-chip">ID #${rest.id}</span>
+        </div>
+        <div class="restaurant-item-actions">
+          <button class="restaurants-delete-btn" onclick="deleteRestaurant(${index})">Delete</button>
+        </div>
+      </article>
+    `;
+    }).join('');
+  }
+
   function loadRestaurants() {
-    const restaurants = JSON.parse(localStorage.getItem('restaurants')) || [
-      {id: 1, name: 'Pizza Palace'},
-      {id: 2, name: 'Burger Hub'}
-    ];
-
-    const tbody = document.getElementById('restaurantsTable');
-
-    tbody.innerHTML = restaurants.map((rest, i) => `
-      <tr>
-        <td>${rest.id}</td>
-        <td>${rest.name}</td>
-        <td>
-          <button onclick="deleteRestaurant(${i})" style="background: red; color: white; padding: 5px 10px; cursor: pointer; border: none; border-radius: 5px;">Delete</button>
-        </td>
-      </tr>
-    `).join('');
+    allRestaurants = JSON.parse(localStorage.getItem('restaurants')) || defaultRestaurants;
+    renderRestaurants(allRestaurants);
   }
 
   function addRestaurant() {
@@ -73,29 +131,60 @@
       return;
     }
 
-    let restaurants = JSON.parse(localStorage.getItem('restaurants')) || [
-      {id: 1, name: 'Pizza Palace'},
-      {id: 2, name: 'Burger Hub'}
-    ];
+    const maxId = allRestaurants.length ? Math.max(...allRestaurants.map(r => Number(r.id) || 0)) : 0;
+    const newId = maxId + 1;
 
-    const newId = Math.max(...restaurants.map(r => r.id)) + 1;
-    restaurants.push({id: newId, name});
-    localStorage.setItem('restaurants', JSON.stringify(restaurants));
+    allRestaurants.push({ id: newId, name });
+    localStorage.setItem('restaurants', JSON.stringify(allRestaurants));
 
     document.getElementById('restName').value = '';
-    loadRestaurants();
+    renderRestaurants(allRestaurants);
   }
 
   function deleteRestaurant(index) {
+    if (index < 0) return;
+
     if (confirm('Delete this restaurant?')) {
-      let restaurants = JSON.parse(localStorage.getItem('restaurants')) || [];
-      restaurants.splice(index, 1);
-      localStorage.setItem('restaurants', JSON.stringify(restaurants));
-      loadRestaurants();
+      allRestaurants.splice(index, 1);
+      localStorage.setItem('restaurants', JSON.stringify(allRestaurants));
+
+      const query = document.getElementById('restaurantSearchInput').value.toLowerCase().trim();
+      if (!query) {
+        renderRestaurants(allRestaurants);
+        return;
+      }
+
+      const filteredRestaurants = allRestaurants.filter((rest) =>
+        String(rest.id).toLowerCase().includes(query) ||
+        (rest.name || '').toLowerCase().includes(query)
+      );
+      renderRestaurants(filteredRestaurants);
     }
   }
 
+  document.getElementById('restaurantForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    addRestaurant();
+  });
+
+  document.getElementById('restaurantSearchInput').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase().trim();
+
+    if (!query) {
+      renderRestaurants(allRestaurants);
+      return;
+    }
+
+    const filteredRestaurants = allRestaurants.filter((rest) =>
+      String(rest.id).toLowerCase().includes(query) ||
+      (rest.name || '').toLowerCase().includes(query)
+    );
+
+    renderRestaurants(filteredRestaurants);
+  });
+
   loadRestaurants();
 </script>
+<script src="../js/admin.js"></script>
 </body>
 </html>

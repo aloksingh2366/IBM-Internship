@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -22,20 +23,104 @@
 
   <!-- Login Container -->
   <div class="auth-container">
-    <div class="auth-box">
-      <h2>Welcome Back 👋</h2>
-      <p>Login to continue ordering</p>
+    <div class="login-wrapper">
+      <!-- Left Side - Brand Section -->
+      <div class="login-brand">
+        <div class="brand-content">
+          <div class="brand-icon">🍕</div>
+          <h1>Foodie</h1>
+          <p>Discover delicious food delivered to your doorstep</p>
+          <ul class="brand-features">
+            <li><i class="fas fa-check-circle"></i> Fast Delivery</li>
+            <li><i class="fas fa-check-circle"></i> Fresh Food</li>
+            <li><i class="fas fa-check-circle"></i> Best Prices</li>
+          </ul>
+        </div>
+      </div>
 
-      <form id="loginForm">
-        <input type="email" id="email" placeholder="Enter Email" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
+      <!-- Right Side - Login Form -->
+      <div class="auth-box">
+        <div class="form-header">
+          <h2>Welcome Back 👋</h2>
+          <p>Login to continue your food journey</p>
+        </div>
 
-        <button type="submit">Login</button>
-      </form>
+        <form id="loginForm" class="login-form">
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope"></i>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="you@example.com" 
+                required
+              >
+            </div>
+            <span class="error-msg" id="emailError"></span>
+          </div>
 
-      <p class="auth-link">
-        Don't have an account? <a href="signup.html">Signup</a>
-      </p>
+          <!-- Password Input -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="••••••••" 
+                required
+              >
+              <button type="button" class="toggle-password" id="togglePassword">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="error-msg" id="passwordError"></span>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="form-footer">
+            <label class="remember-me">
+              <input type="checkbox" name="remember">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-login">
+            <span>Login</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <!-- Social Login -->
+        <div class="social-login">
+          <button type="button" class="social-btn google-btn" title="Login with Google">
+            <i class="fab fa-google"></i>
+          </button>
+          <button type="button" class="social-btn facebook-btn" title="Login with Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button type="button" class="social-btn github-btn" title="Login with GitHub">
+            <i class="fab fa-github"></i>
+          </button>
+        </div>
+
+        <!-- Signup Link -->
+        <p class="auth-link">
+          Don't have an account? 
+          <a href="signup.html">Create one now</a>
+        </p>
+      </div>
     </div>
   </div>
 

@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>Manage Orders - Foodie Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body>
+<body class="admin-dashboard-page orders-management-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie Admin</div>
@@ -20,50 +23,166 @@
   </nav>
 </header>
 
-<section class="admin-panel">
-  <h2>Manage Orders 📦</h2>
+<main class="admin-dashboard-wrap orders-manage-wrap">
+  <section class="admin-panel admin-intro orders-intro">
+    <div>
+      <p class="admin-badge">Order Control</p>
+      <h1>Manage Orders</h1>
+      <p>Monitor placed orders, review item details, and remove invalid entries from the system.</p>
+    </div>
+    <a class="admin-primary-btn" href="dashboard.html">Back to Dashboard</a>
+  </section>
 
-  <div id="ordersContainer"></div>
-</section>
+  <section class="admin-panel orders-controls-card">
+    <div class="orders-controls">
+      <div class="order-stat-grid">
+        <div class="order-stat-box">
+          <span class="order-stat-box__label">Total Orders</span>
+          <strong class="order-stat-box__value" id="totalOrdersCount">0</strong>
+        </div>
+        <div class="order-stat-box">
+          <span class="order-stat-box__label">Items Sold</span>
+          <strong class="order-stat-box__value" id="totalItemsCount">0</strong>
+        </div>
+        <div class="order-stat-box">
+          <span class="order-stat-box__label">Revenue</span>
+          <strong class="order-stat-box__value" id="totalRevenue">₹0</strong>
+        </div>
+      </div>
+
+      <label class="orders-search" for="orderSearchInput">
+        <span>Search Orders</span>
+        <input
+          id="orderSearchInput"
+          type="text"
+          placeholder="Search by dish name..."
+          autocomplete="off"
+        >
+      </label>
+    </div>
+
+    <div id="ordersContainer" class="orders-list"></div>
+  </section>
+</main>
 
 <script>
-  function loadOrders() {
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+  let allOrders = [];
+
+  function getOrderTotals(order) {
+    return order.reduce((acc, item) => {
+      const qty = item.quantity || 1;
+      const price = Number(item.price) || 0;
+      acc.items += qty;
+      acc.total += price * qty;
+      return acc;
+    }, { items: 0, total: 0 });
+  }
+
+  function updateOrderStats(orders) {
+    const totalOrdersCount = document.getElementById('totalOrdersCount');
+    const totalItemsCount = document.getElementById('totalItemsCount');
+    const totalRevenue = document.getElementById('totalRevenue');
+
+    const totals = allOrders.reduce((acc, order) => {
+      const stats = getOrderTotals(order);
+      acc.items += stats.items;
+      acc.total += stats.total;
+      return acc;
+    }, { items: 0, total: 0 });
+
+    totalOrdersCount.textContent = allOrders.length;
+    totalItemsCount.textContent = totals.items;
+    totalRevenue.textContent = `₹${totals.total}`;
+  }
+
+  function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
+    updateOrderStats(orders);
 
     if (orders.length === 0) {
-      container.innerHTML = '<p>No orders yet</p>';
+      container.innerHTML = '<p class="orders-empty">No matching orders found</p>';
       return;
     }
 
     container.innerHTML = orders.map((order, i) => {
-      let total = 0;
+      const actualIndex = allOrders.indexOf(order);
+      const stats = getOrderTotals(order);
+
       const items = order.map(item => {
-        total += item.price;
-        return `<p>- ${item.name}: ₹${item.price}</p>`;
+        const qty = item.quantity || 1;
+        const price = Number(item.price) || 0;
+        return `
+          <li>
+            <span class="item-name">${item.name || 'Unnamed Item'}</span>
+            <span class="item-meta">Qty ${qty} • ₹${price}</span>
+          </li>
+        `;
       }).join('');
 
       return `
-        <div class="admin-card" style="margin-bottom: 15px; padding: 20px;">
-          <h3>Order #${i + 1}</h3>
-          ${items}
-          <p><strong>Total: ₹${total}</strong></p>
-          <button onclick="deleteOrder(${i})" style="background: red; color: white; padding: 8px 12px; cursor: pointer; border: none; border-radius: 5px;">Delete</button>
-        </div>
+        <article class="order-card">
+          <div class="order-card__head">
+            <div>
+              <h3>Order #${actualIndex + 1}</h3>
+              <p>${stats.items} items</p>
+            </div>
+            <span class="status warning">Pending</span>
+          </div>
+
+          <ul class="order-items-list">
+            ${items}
+          </ul>
+
+          <div class="order-card__footer">
+            <strong>Total: ₹${stats.total}</strong>
+            <button class="orders-delete-btn" onclick="deleteOrder(${actualIndex})">Delete</button>
+          </div>
+        </article>
       `;
     }).join('');
   }
 
+  function loadOrders() {
+    allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    renderOrders(allOrders);
+  }
+
   function deleteOrder(index) {
+    if (index < 0) return;
+
     if (confirm('Delete this order?')) {
-      let orders = JSON.parse(localStorage.getItem('orders')) || [];
-      orders.splice(index, 1);
-      localStorage.setItem('orders', JSON.stringify(orders));
-      loadOrders();
+      allOrders.splice(index, 1);
+      localStorage.setItem('orders', JSON.stringify(allOrders));
+
+      const query = document.getElementById('orderSearchInput').value.toLowerCase().trim();
+      if (!query) {
+        renderOrders(allOrders);
+        return;
+      }
+
+      const filteredOrders = allOrders.filter(order =>
+        order.some(item => (item.name || '').toLowerCase().includes(query))
+      );
+      renderOrders(filteredOrders);
     }
   }
 
+  document.getElementById('orderSearchInput').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase().trim();
+    if (!query) {
+      renderOrders(allOrders);
+      return;
+    }
+
+    const filteredOrders = allOrders.filter(order =>
+      order.some(item => (item.name || '').toLowerCase().includes(query))
+    );
+
+    renderOrders(filteredOrders);
+  });
+
   loadOrders();
 </script>
+<script src="../js/admin.js"></script>
 </body>
 </html>

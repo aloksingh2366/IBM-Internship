@@ -5,27 +5,52 @@
   <title>Restaurants - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/restaurant.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
-<body>
+<body class="restaurants-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
   <nav>
     <a href="index.html">Home</a>
-    <a href="search.html">Search 🔍</a>
-    <a href="cart.html">Cart 🛒</a>
-    <a href="profile.html">Profile 👤</a>
+    <a href="search.html">Search</a>
+    <a href="cart.html">Cart</a>
+    <a href="profile.html">Profile</a>
   </nav>
 </header>
 
-<section class="restaurants">
-  <h2>Restaurants Near You</h2>
-  <div class="restaurant-container" id="restaurantContainer"></div>
+<section class="restaurants-explorer">
+  <div class="explorer-header">
+    <p class="explorer-badge">Map Explorer</p>
+    <h2>Restaurants Near You</h2>
+    <p>Browse restaurants directly on the map and select one to view full details and reviews.</p>
+  </div>
+
+  <div class="explorer-layout">
+    <aside class="restaurant-sidebar">
+      <h3>Nearby Places</h3>
+      <p class="sidebar-subtitle">Click a restaurant card or map marker to inspect details.</p>
+      <div class="restaurant-container" id="restaurantContainer"></div>
+    </aside>
+
+    <section class="map-and-details">
+      <div id="map" class="restaurant-map"></div>
+      <aside id="restaurantInfo" class="restaurant-info">
+        <h3>Select a restaurant</h3>
+        <p>Choose from the map markers or from the nearby places list.</p>
+      </aside>
+    </section>
+  </div>
 </section>
 
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="js/restaurant.js"></script>
 </body>
 </html>

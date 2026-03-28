@@ -5,11 +5,15 @@
   <title>Orders - Foodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="orders-page">
 
 <header class="navbar">
   <div class="logo">🍔 Foodie</div>
@@ -21,9 +25,29 @@
   </nav>
 </header>
 
-<section class="cart">
-  <h2>Your Orders 📦</h2>
-  <div id="ordersContainer"></div>
+<section class="orders-wrap">
+  <div class="orders-hero">
+    <p class="orders-badge">Order Center</p>
+    <h2>Your Orders</h2>
+    <p>Track your recent orders, review item details, and reorder your favorites in one click.</p>
+  </div>
+
+  <div class="orders-stats" id="ordersStats">
+    <div class="orders-stat-card">
+      <span>Total Orders</span>
+      <strong id="totalOrders">0</strong>
+    </div>
+    <div class="orders-stat-card">
+      <span>Total Items</span>
+      <strong id="totalOrderItems">0</strong>
+    </div>
+    <div class="orders-stat-card">
+      <span>Total Spend</span>
+      <strong id="totalOrderSpend">₹0</strong>
+    </div>
+  </div>
+
+  <div id="ordersContainer" class="orders-list"></div>
 </section>
 
 <script src="js/order.js"></script>
